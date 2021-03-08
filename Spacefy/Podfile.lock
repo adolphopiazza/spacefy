@@ -3,22 +3,26 @@ PODS:
   - Bagel (1.4.0):
     - CocoaAsyncSocket
   - CocoaAsyncSocket (7.6.5)
+  - JGProgressHUD (2.2)
 
 DEPENDENCIES:
   - Alamofire (~> 5.2)
   - Bagel (~> 1.4.0)
+  - JGProgressHUD
 
 SPEC REPOS:
   trunk:
     - Alamofire
     - Bagel
     - CocoaAsyncSocket
+    - JGProgressHUD
 
 SPEC CHECKSUMS:
   Alamofire: 2291f7d21ca607c491dd17642e5d40fdcda0e65c
   Bagel: c3fa6bcbd52db9ca976edbafd7638f0553ded101
   CocoaAsyncSocket: 065fd1e645c7abab64f7a6a2007a48038fdc6a99
+  JGProgressHUD: d83d7a981b85d11205e19ff8ad5bb9c40571c847
 
-PODFILE CHECKSUM: dc5c351a136fa2741b1f8d180eb6a82476640cd9
+PODFILE CHECKSUM: 05cef269000380e1c2ef4c6bb034ffe5ac4b1606
 
 COCOAPODS: 1.10.1
