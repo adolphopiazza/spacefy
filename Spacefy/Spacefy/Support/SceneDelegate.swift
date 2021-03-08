@@ -30,8 +30,6 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     
     func createNewsTabBar() -> UINavigationController {
         let newsNC = UINavigationController(rootViewController: NewsViewController())
-        let tsete = NewsViewController()
-        
         newsNC.tabBarItem = UITabBarItem(title: NewsViewController.newsVCTitle, image: UIImage(systemName: "note.text"), tag: 0)
         return newsNC
     }

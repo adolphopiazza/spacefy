@@ -12,6 +12,7 @@
 		382C8EA525F57DCF00C61FA0 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 382C8EA425F57DCF00C61FA0 /* SceneDelegate.swift */; };
 		382C8EAC25F57DD000C61FA0 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 382C8EAB25F57DD000C61FA0 /* Assets.xcassets */; };
 		382C8EAF25F57DD000C61FA0 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 382C8EAD25F57DD000C61FA0 /* LaunchScreen.storyboard */; };
+		EA6FCB7C6082CE03F67A687E /* Pods_Spacefy.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C9B085F82635AEDBF51CD47A /* Pods_Spacefy.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -22,6 +23,9 @@
 		382C8EAB25F57DD000C61FA0 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		382C8EAE25F57DD000C61FA0 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		382C8EB025F57DD000C61FA0 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		451DEACBAFD27B828A34A608 /* Pods-Spacefy.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Spacefy.release.xcconfig"; path = "Target Support Files/Pods-Spacefy/Pods-Spacefy.release.xcconfig"; sourceTree = "<group>"; };
+		787DE6E5313A97291017984D /* Pods-Spacefy.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Spacefy.debug.xcconfig"; path = "Target Support Files/Pods-Spacefy/Pods-Spacefy.debug.xcconfig"; sourceTree = "<group>"; };
+		C9B085F82635AEDBF51CD47A /* Pods_Spacefy.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Spacefy.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -29,12 +33,21 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				EA6FCB7C6082CE03F67A687E /* Pods_Spacefy.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		2166BD0EBAD30235FE333686 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				C9B085F82635AEDBF51CD47A /* Pods_Spacefy.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		3807222A25F59D0A00F32BEB /* Scenes */ = {
 			isa = PBXGroup;
 			children = (
@@ -56,6 +69,8 @@
 			children = (
 				382C8EA125F57DCF00C61FA0 /* Spacefy */,
 				382C8EA025F57DCF00C61FA0 /* Products */,
+				99DA05B5DE255AE5BCC61E44 /* Pods */,
+				2166BD0EBAD30235FE333686 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -88,6 +103,16 @@
 			path = Support;
 			sourceTree = "<group>";
 		};
+		99DA05B5DE255AE5BCC61E44 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				787DE6E5313A97291017984D /* Pods-Spacefy.debug.xcconfig */,
+				451DEACBAFD27B828A34A608 /* Pods-Spacefy.release.xcconfig */,
+			);
+			name = Pods;
+			path = Pods;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -95,9 +120,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 382C8EB325F57DD000C61FA0 /* Build configuration list for PBXNativeTarget "Spacefy" */;
 			buildPhases = (
+				A8C9FAF415433C5A762997AA /* [CP] Check Pods Manifest.lock */,
 				382C8E9B25F57DCF00C61FA0 /* Sources */,
 				382C8E9C25F57DCF00C61FA0 /* Frameworks */,
 				382C8E9D25F57DCF00C61FA0 /* Resources */,
+				039647DA82E727351A62F0B0 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -151,6 +178,48 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		039647DA82E727351A62F0B0 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Spacefy/Pods-Spacefy-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Spacefy/Pods-Spacefy-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Spacefy/Pods-Spacefy-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		A8C9FAF415433C5A762997AA /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-Spacefy-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		382C8E9B25F57DCF00C61FA0 /* Sources */ = {
@@ -295,6 +364,7 @@
 		};
 		382C8EB425F57DD000C61FA0 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 787DE6E5313A97291017984D /* Pods-Spacefy.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -315,6 +385,7 @@
 		};
 		382C8EB525F57DD000C61FA0 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 451DEACBAFD27B828A34A608 /* Pods-Spacefy.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;

@@ -1,0 +1,24 @@
+PODS:
+  - Alamofire (5.4.1)
+  - Bagel (1.4.0):
+    - CocoaAsyncSocket
+  - CocoaAsyncSocket (7.6.5)
+
+DEPENDENCIES:
+  - Alamofire (~> 5.2)
+  - Bagel (~> 1.4.0)
+
+SPEC REPOS:
+  trunk:
+    - Alamofire
+    - Bagel
+    - CocoaAsyncSocket
+
+SPEC CHECKSUMS:
+  Alamofire: 2291f7d21ca607c491dd17642e5d40fdcda0e65c
+  Bagel: c3fa6bcbd52db9ca976edbafd7638f0553ded101
+  CocoaAsyncSocket: 065fd1e645c7abab64f7a6a2007a48038fdc6a99
+
+PODFILE CHECKSUM: dc5c351a136fa2741b1f8d180eb6a82476640cd9
+
+COCOAPODS: 1.10.1
