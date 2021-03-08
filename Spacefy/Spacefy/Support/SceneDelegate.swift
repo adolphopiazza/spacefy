@@ -16,8 +16,24 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         
         window = UIWindow(frame: initialScene.coordinateSpace.bounds)
         window?.windowScene = initialScene
-        window?.rootViewController = ViewController()
+        window?.rootViewController = createTabBarController()
         window?.makeKeyAndVisible()
+    }
+    
+    func createTabBarController() -> UITabBarController {
+        let tabBarVC = UITabBarController()
+        
+        tabBarVC.setViewControllers([createNewsTabBar()], animated: true)
+        
+        return tabBarVC
+    }
+    
+    func createNewsTabBar() -> UINavigationController {
+        let newsNC = UINavigationController(rootViewController: NewsViewController())
+        let tsete = NewsViewController()
+        
+        newsNC.tabBarItem = UITabBarItem(title: NewsViewController.newsVCTitle, image: UIImage(systemName: "note.text"), tag: 0)
+        return newsNC
     }
 
     func sceneDidDisconnect(_ scene: UIScene) {
