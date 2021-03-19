@@ -27,4 +27,19 @@ class NewsService {
         }
     }
     
+    func fetchImage(url: String, completionHandler: @escaping (UIImage?, AFError?) -> Void) {
+        let request = AF.request(url)
+        
+        request.responseData { (response) in
+            if let error = response.error {
+                completionHandler(nil, error)
+                return
+            }
+            
+            if let data = response.data {
+                completionHandler(UIImage(data: data), nil)
+            }
+        }
+    }
+    
 }
