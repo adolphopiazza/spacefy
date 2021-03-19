@@ -90,4 +90,9 @@ extension NewsViewController: UITableViewDelegate, UITableViewDataSource {
         return cell
     }
     
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let visualizeVC = VisualizeNewsViewController(news: articles?[indexPath.row])
+        present(visualizeVC, animated: true, completion: nil)
+    }
+    
 }
