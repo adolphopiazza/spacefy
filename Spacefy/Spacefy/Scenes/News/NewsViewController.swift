@@ -6,21 +6,45 @@
 //
 
 import UIKit
+import JGProgressHUD
 
 class NewsViewController: UIViewController {
 
     static let newsVCTitle = "Latest News"
     
+    private let progressHUD: JGProgressHUD = JGProgressHUD(style: .dark)
     private let tableView: UITableView = UITableView()
-    private let testingNews: [String] = ["SpaceX launches falcon five", "NASA lands on Mars", "Men conquer the moon"]
+    private var articles: [NewsModel]?
     
     override func viewDidLoad() {
         super.viewDidLoad()
 
         setupView()
         setupTableView()
+        loadData()
     }
 
+}
+
+//MARK: - API Calls
+extension NewsViewController {
+    
+    private func loadData() {
+        progressHUD.textLabel.text = "Fetching News"
+        progressHUD.show(in: view)
+        
+        NewsService.shared.fetchAll { (news, error) in
+            self.progressHUD.dismiss()
+            if let error = error {
+                print(error)
+                return
+            }
+            
+            self.articles = news
+            self.tableView.reloadData()
+        }
+    }
+    
 }
 
 //MARK: - Layouts
@@ -36,8 +60,10 @@ extension NewsViewController {
         tableView.translatesAutoresizingMaskIntoConstraints = false
         view.addSubview(tableView)
         
+        tableView.register(NewsTableViewCell.self, forCellReuseIdentifier: NewsTableViewCell.reuseID)
         tableView.delegate = self
         tableView.dataSource = self
+        tableView.tableFooterView = UIView()
         
         NSLayoutConstraint.activate([
             tableView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
@@ -53,14 +79,14 @@ extension NewsViewController {
 extension NewsViewController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return testingNews.count
+        return articles?.count ?? 0
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = UITableViewCell(style: .default, reuseIdentifier: nil)
-        
-        cell.textLabel?.text = testingNews[indexPath.row]
-        
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: NewsTableViewCell.reuseID, for: indexPath) as? NewsTableViewCell else {
+            return UITableViewCell()
+        }
+        cell.news = articles?[indexPath.row]
         return cell
     }
     

@@ -8,5 +8,6 @@ target 'Spacefy' do
   # Pods for Spacefy
   pod 'Alamofire', '~> 5.2'
   pod 'Bagel', '~>  1.4.0'
+  pod 'JGProgressHUD'
 
 end
