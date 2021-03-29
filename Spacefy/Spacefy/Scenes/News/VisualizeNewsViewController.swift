@@ -6,19 +6,15 @@
 //
 
 import UIKit
-import JGProgressHUD
 
-class VisualizeNewsViewController: UIViewController {
+class VisualizeNewsViewController: SFYScrollViewController {
 
     private var news: NewsModel?
-    private let progressHUD = JGProgressHUD(style: .dark)
-    private let closeButton: UIButton = UIButton()
+    private let closeButton: SFYButton = SFYButton(title: "Close")
     private let newsImageView: UIImageView = UIImageView()
-    private let summaryLabel: UILabel = UILabel()
-    private let dateLabel: UILabel = UILabel()
-    private let readOnWebsiteButton: UIButton = UIButton()
-    private let scrollView: UIScrollView = UIScrollView()
-    private let contentView: UIView = UIView()
+    private let summaryLabel: SFYLabel = SFYLabel()
+    private let dateLabel: SFYLabel = SFYLabel()
+    private let readOnWebsiteButton: SFYButton = SFYButton()
     
     init(news: NewsModel?) {
         super.init(nibName: nil, bundle: nil)
@@ -32,7 +28,6 @@ class VisualizeNewsViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        setupView()
         loadImage()
     }
 
@@ -40,10 +35,6 @@ class VisualizeNewsViewController: UIViewController {
 
 //MARK: - Actions
 extension VisualizeNewsViewController {
-    
-    @objc private func closeAction() {
-        dismiss(animated: true, completion: nil)
-    }
     
     private func loadImage() {
         progressHUD.show(in: view)
@@ -59,11 +50,6 @@ extension VisualizeNewsViewController {
         }
     }
     
-    @objc private func openWebsite() {
-        guard let newsURL = news?.url, let url = URL(string: newsURL) else { return }
-        UIApplication.shared.open(url, options: [:], completionHandler: nil)
-    }
-    
 }
 
 //MARK: - Layouts
@@ -71,27 +57,19 @@ extension VisualizeNewsViewController {
     
     private func setupLayouts() {
         setupNewsImageView()
-        setupScrollAndContentView()
         setupCloseButton()
         setupSummaryLabel()
         setupDateLabel()
         setupReadOnWebsiteButton()
     }
     
-    private func setupView() {
-        view.backgroundColor = .systemBackground
-    }
-    
     private func setupCloseButton() {
-        closeButton.translatesAutoresizingMaskIntoConstraints = false
         view.addSubview(closeButton)
         
-        closeButton.setTitle("Close", for: .normal)
-        closeButton.setTitleColor(.label, for: .normal)
-        closeButton.titleLabel?.font = .systemFont(ofSize: 14, weight: .semibold)
-        closeButton.backgroundColor = .systemBackground
-        closeButton.layer.cornerRadius = 10
-        closeButton.addTarget(self, action: #selector(closeAction), for: .touchUpInside)
+        closeButton.configure(font: .systemFont(ofSize: 14, weight: .semibold))
+        closeButton.onTap {
+            self.dismiss(animated: true, completion: nil)
+        }
         
         NSLayoutConstraint.activate([
             closeButton.topAnchor.constraint(equalTo: view.topAnchor, constant: 20),
@@ -102,62 +80,33 @@ extension VisualizeNewsViewController {
     
     private func setupNewsImageView() {
         newsImageView.translatesAutoresizingMaskIntoConstraints = false
-        view.addSubview(newsImageView)
+        contentView.addSubview(newsImageView)
         
         newsImageView.contentMode = .scaleToFill
         
         NSLayoutConstraint.activate([
-            newsImageView.topAnchor.constraint(equalTo: view.topAnchor),
-            newsImageView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
-            newsImageView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+            newsImageView.topAnchor.constraint(equalTo: contentView.topAnchor),
+            newsImageView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor),
+            newsImageView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor),
             newsImageView.heightAnchor.constraint(equalToConstant: view.frame.height * 0.3)
         ])
     }
     
-    private func setupScrollAndContentView() {
-        scrollView.translatesAutoresizingMaskIntoConstraints = false
-        contentView.translatesAutoresizingMaskIntoConstraints = false
-        
-        view.addSubview(scrollView)
-        scrollView.addSubview(contentView)
-        
-        NSLayoutConstraint.activate([
-            scrollView.topAnchor.constraint(equalTo: newsImageView.bottomAnchor),
-            scrollView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
-            scrollView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
-            scrollView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
-            
-            contentView.topAnchor.constraint(equalTo: scrollView.topAnchor),
-            contentView.leadingAnchor.constraint(equalTo: scrollView.leadingAnchor),
-            contentView.trailingAnchor.constraint(equalTo: scrollView.trailingAnchor),
-            contentView.bottomAnchor.constraint(equalTo: scrollView.bottomAnchor),
-            contentView.widthAnchor.constraint(equalTo: scrollView.widthAnchor)
-        ])
-    }
-    
     private func setupSummaryLabel() {
-        summaryLabel.translatesAutoresizingMaskIntoConstraints = false
         contentView.addSubview(summaryLabel)
-        
-        summaryLabel.text = news?.summary
-        summaryLabel.textColor = .label
-        summaryLabel.font = .systemFont(ofSize: 22, weight: .semibold)
+        summaryLabel.configure(text: news?.summary, font: .systemFont(ofSize: 22, weight: .semibold))
         summaryLabel.numberOfLines = 0
         
         NSLayoutConstraint.activate([
-            summaryLabel.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 20),
+            summaryLabel.topAnchor.constraint(equalTo: newsImageView.bottomAnchor, constant: 20),
             summaryLabel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 20),
             summaryLabel.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -20)
         ])
     }
     
     private func setupDateLabel() {
-        dateLabel.translatesAutoresizingMaskIntoConstraints = false
         contentView.addSubview(dateLabel)
-        
-        dateLabel.text = news?.publishedAt?.formatToBRLDate
-        dateLabel.textColor = .secondaryLabel
-        dateLabel.font = .systemFont(ofSize: 15)
+        dateLabel.configure(text: news?.publishedAt?.formatToBRLDate, color: .secondaryLabel, font: .systemFont(ofSize: 15))
         
         NSLayoutConstraint.activate([
             dateLabel.topAnchor.constraint(equalTo: summaryLabel.bottomAnchor, constant: 10),
@@ -166,14 +115,14 @@ extension VisualizeNewsViewController {
     }
     
     private func setupReadOnWebsiteButton() {
-        readOnWebsiteButton.translatesAutoresizingMaskIntoConstraints = false
         contentView.addSubview(readOnWebsiteButton)
         
         readOnWebsiteButton.setTitle("Read this on \(news?.newsSite ?? "Safari")", for: .normal)
-        readOnWebsiteButton.setTitleColor(.label, for: .normal)
-        readOnWebsiteButton.backgroundColor = .tertiarySystemFill
-        readOnWebsiteButton.layer.cornerRadius = 10
-        readOnWebsiteButton.addTarget(self, action: #selector(openWebsite), for: .touchUpInside)
+        readOnWebsiteButton.configure(backgroundColor: .tertiarySystemFill)
+        readOnWebsiteButton.onTap {
+            guard let newsURL = self.news?.url, let url = URL(string: newsURL) else { return }
+            UIApplication.shared.open(url, options: [:], completionHandler: nil)
+        }
         
         NSLayoutConstraint.activate([
             readOnWebsiteButton.topAnchor.constraint(equalTo: dateLabel.bottomAnchor, constant: 20),
