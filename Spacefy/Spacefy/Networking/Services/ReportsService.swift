@@ -1,23 +1,23 @@
 //
-//  NewsService.swift
+//  ReportsService.swift
 //  Spacefy
 //
-//  Created by Adolpho Piazza on 07/03/21.
+//  Created by Adolpho Piazza on 29/03/21.
 //
 
 import Foundation
 import Alamofire
 
-class NewsService {
+class ReportsService {
     
-    static let shared = NewsService()
+    static let shared = ReportsService()
     
     init() {}
     
-    func fetchAll(completionHandler: @escaping ([NewsModel]?, AFError?) -> Void) {
-        let request = AF.request(SFYNetworking.articles)
+    func fetchAll(completionHandler: @escaping ([ReportModel]?, AFError?) -> Void) {
+        let request = AF.request(SFYNetworking.reports)
         
-        request.responseDecodable(of: [NewsModel].self) { (response) in
+        request.responseDecodable(of: [ReportModel].self) { (response) in
             if let error = response.error {
                 completionHandler(nil, error)
                 return

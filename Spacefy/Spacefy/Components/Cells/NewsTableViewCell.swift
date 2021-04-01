@@ -10,9 +10,9 @@ import UIKit
 class NewsTableViewCell: UITableViewCell {
     
     static let reuseID = "NewsTableViewCell"
-    private let newsTitle: UILabel = UILabel()
-    private let newsPublishedAt: UILabel = UILabel()
-    private let newsSite: UILabel = UILabel()
+    private let newsTitle: SFYLabel = SFYLabel()
+    private let newsPublishedAt: SFYLabel = SFYLabel()
+    private let newsSite: SFYLabel = SFYLabel()
     
     var news: NewsModel? {
         didSet {
@@ -42,12 +42,8 @@ extension NewsTableViewCell {
     }
     
     private func setupNewsTitle() {
-        newsTitle.translatesAutoresizingMaskIntoConstraints = false
         addSubview(newsTitle)
-        
-        newsTitle.text = news?.title
-        newsTitle.textColor = .label
-        newsTitle.font = .systemFont(ofSize: 22, weight: .semibold)
+        newsTitle.configure(text: news?.title, font: .systemFont(ofSize: 22, weight: .semibold))
         newsTitle.numberOfLines = 0
         
         NSLayoutConstraint.activate([
@@ -58,12 +54,8 @@ extension NewsTableViewCell {
     }
     
     private func setupNewsPublishedAt() {
-        newsPublishedAt.translatesAutoresizingMaskIntoConstraints = false
         addSubview(newsPublishedAt)
-        
-        newsPublishedAt.text = news?.publishedAt?.formatToBRLDate
-        newsPublishedAt.textColor = .secondaryLabel
-        newsPublishedAt.font = .systemFont(ofSize: 15)
+        newsPublishedAt.configure(text: news?.publishedAt?.formatToBRLDate, color: .secondaryLabel, font: .systemFont(ofSize: 15))
         
         NSLayoutConstraint.activate([
             newsPublishedAt.topAnchor.constraint(equalTo: newsTitle.bottomAnchor, constant: 20),
@@ -73,12 +65,8 @@ extension NewsTableViewCell {
     }
     
     private func setupNewsSite() {
-        newsSite.translatesAutoresizingMaskIntoConstraints = false
         addSubview(newsSite)
-        
-        newsSite.text = news?.newsSite
-        newsSite.textColor = .secondaryLabel
-        newsSite.font = .systemFont(ofSize: 15)
+        newsSite.configure(text: news?.newsSite, color: .secondaryLabel, font: .systemFont(ofSize: 15))
         
         NSLayoutConstraint.activate([
             newsSite.centerYAnchor.constraint(equalTo: newsPublishedAt.centerYAnchor),

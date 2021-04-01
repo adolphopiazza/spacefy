@@ -6,21 +6,25 @@
 //
 
 import UIKit
-import JGProgressHUD
 
-class NewsViewController: UIViewController {
+class NewsViewController: SFYBaseViewController {
 
     static let newsVCTitle = "Latest News"
     
-    private let progressHUD: JGProgressHUD = JGProgressHUD(style: .dark)
     private let tableView: UITableView = UITableView()
     private var articles: [NewsModel]?
     
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        setupView()
+        title = NewsViewController.newsVCTitle
+        isLargeTitle = true
+        
         setupTableView()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
         loadData()
     }
 
@@ -36,7 +40,7 @@ extension NewsViewController {
         NewsService.shared.fetchAll { (news, error) in
             self.progressHUD.dismiss()
             if let error = error {
-                print(error)
+                self.showErrorAlertWith(message: error.localizedDescription)
                 return
             }
             
@@ -49,12 +53,6 @@ extension NewsViewController {
 
 //MARK: - Layouts
 extension NewsViewController {
-    
-    private func setupView() {
-        title = NewsViewController.newsVCTitle
-        navigationController?.navigationBar.prefersLargeTitles = true
-        view.backgroundColor = .systemBackground
-    }
     
     private func setupTableView() {
         tableView.translatesAutoresizingMaskIntoConstraints = false
@@ -88,6 +86,11 @@ extension NewsViewController: UITableViewDelegate, UITableViewDataSource {
         }
         cell.news = articles?[indexPath.row]
         return cell
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let visualizeVC = VisualizeNewsViewController(news: articles?[indexPath.row])
+        present(visualizeVC, animated: true, completion: nil)
     }
     
 }
