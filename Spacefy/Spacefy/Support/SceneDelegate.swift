@@ -23,15 +23,22 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     func createTabBarController() -> UITabBarController {
         let tabBarVC = UITabBarController()
         
-        tabBarVC.setViewControllers([createNewsTabBar()], animated: true)
+        tabBarVC.tabBar.tintColor = .label
+        tabBarVC.setViewControllers([createNewsTabBar(), createReportsTabBar()], animated: true)
         
         return tabBarVC
     }
     
     func createNewsTabBar() -> UINavigationController {
         let newsNC = UINavigationController(rootViewController: NewsViewController())
-        newsNC.tabBarItem = UITabBarItem(title: NewsViewController.newsVCTitle, image: UIImage(systemName: "note.text"), tag: 0)
+        newsNC.tabBarItem = UITabBarItem(title: NewsViewController.newsVCTitle, image: UIImage.SFYTabbar.news, tag: 0)
         return newsNC
+    }
+    
+    func createReportsTabBar() -> UINavigationController {
+        let reportsVC = UINavigationController(rootViewController: ReportsViewController())
+        reportsVC.tabBarItem = UITabBarItem(title: ReportsViewController.reportsVCTitle, image: UIImage.SFYTabbar.reports, tag: 1)
+        return reportsVC
     }
 
     func sceneDidDisconnect(_ scene: UIScene) {
