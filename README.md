@@ -2,6 +2,17 @@
 
 This is an app to see related news about space and upcoming launches.
 
-It's in really early stage of development.
+<img src="screenshoots/ss1.png" height="450"><img src="screenshoots/ss2.png" height="450"><img src="screenshoots/ss3.png" height="450"><br>
+<img src="screenshoots/ss4.png" height="450"><img src="screenshoots/ss5.png" height="450"><img src="screenshoots/ss6.png" height="450">
 
-Soon more news!
+The app consumes [The Devs Space API](https://thespacedevs.com/snapi) to fetch all data.
+
+## Libraries in use:
+
+* [Alamofire](https://github.com/Alamofire/Alamofire)
+* [JGProgressHUD](https://github.com/JonasGessner/JGProgressHUD)
+* [Bagel](https://github.com/yagiz/Bagel)
+
+All the views are made with view code, no storyboards used!
+
+As soon as more features are added, this readme will be updated.
