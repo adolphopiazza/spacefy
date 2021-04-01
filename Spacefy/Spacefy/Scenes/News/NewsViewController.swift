@@ -21,6 +21,10 @@ class NewsViewController: SFYBaseViewController {
         isLargeTitle = true
         
         setupTableView()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
         loadData()
     }
 
@@ -36,7 +40,7 @@ extension NewsViewController {
         NewsService.shared.fetchAll { (news, error) in
             self.progressHUD.dismiss()
             if let error = error {
-                print(error)
+                self.showErrorAlertWith(message: error.localizedDescription)
                 return
             }
             

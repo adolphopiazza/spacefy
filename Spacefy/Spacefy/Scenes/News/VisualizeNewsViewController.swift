@@ -41,7 +41,7 @@ extension VisualizeNewsViewController {
         NewsService.shared.fetchImage(url: news?.imageUrl ?? "") { (image, error) in
             self.progressHUD.dismiss()
             if let error = error {
-                print(error)
+                self.showErrorAlertWith(message: error.localizedDescription)
                 return
             }
             
