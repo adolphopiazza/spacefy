@@ -27,6 +27,7 @@
 		38CB596426121A0F005B2D97 /* SFYScrollViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38CB596326121A0F005B2D97 /* SFYScrollViewController.swift */; };
 		38CB596726121C18005B2D97 /* SFYBaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38CB596626121C18005B2D97 /* SFYBaseViewController.swift */; };
 		38CB596B26121E78005B2D97 /* SFYButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38CB596A26121E78005B2D97 /* SFYButton.swift */; };
+		38F5B6D226160C65005250F3 /* LaunchesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38F5B6D126160C65005250F3 /* LaunchesViewController.swift */; };
 		EA6FCB7C6082CE03F67A687E /* Pods_Spacefy.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C9B085F82635AEDBF51CD47A /* Pods_Spacefy.framework */; };
 /* End PBXBuildFile section */
 
@@ -53,6 +54,7 @@
 		38CB596326121A0F005B2D97 /* SFYScrollViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SFYScrollViewController.swift; sourceTree = "<group>"; };
 		38CB596626121C18005B2D97 /* SFYBaseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SFYBaseViewController.swift; sourceTree = "<group>"; };
 		38CB596A26121E78005B2D97 /* SFYButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SFYButton.swift; sourceTree = "<group>"; };
+		38F5B6D126160C65005250F3 /* LaunchesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LaunchesViewController.swift; sourceTree = "<group>"; };
 		451DEACBAFD27B828A34A608 /* Pods-Spacefy.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Spacefy.release.xcconfig"; path = "Target Support Files/Pods-Spacefy/Pods-Spacefy.release.xcconfig"; sourceTree = "<group>"; };
 		787DE6E5313A97291017984D /* Pods-Spacefy.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Spacefy.debug.xcconfig"; path = "Target Support Files/Pods-Spacefy/Pods-Spacefy.debug.xcconfig"; sourceTree = "<group>"; };
 		C9B085F82635AEDBF51CD47A /* Pods_Spacefy.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Spacefy.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -81,6 +83,7 @@
 		3807222A25F59D0A00F32BEB /* Scenes */ = {
 			isa = PBXGroup;
 			children = (
+				38F5B6D026160C4D005250F3 /* Launches */,
 				38C5A6922612381500D134FD /* Reports */,
 				3807223325F59F9300F32BEB /* News */,
 			);
@@ -236,6 +239,14 @@
 			path = Buttons;
 			sourceTree = "<group>";
 		};
+		38F5B6D026160C4D005250F3 /* Launches */ = {
+			isa = PBXGroup;
+			children = (
+				38F5B6D126160C65005250F3 /* LaunchesViewController.swift */,
+			);
+			path = Launches;
+			sourceTree = "<group>";
+		};
 		99DA05B5DE255AE5BCC61E44 /* Pods */ = {
 			isa = PBXGroup;
 			children = (
@@ -376,6 +387,7 @@
 				387850FD2615FE82003AAA43 /* UIImage+Ext.swift in Sources */,
 				388BC02B26054DB40073957D /* VisualizeNewsViewController.swift in Sources */,
 				38C5A68D2612373200D134FD /* ReportModel.swift in Sources */,
+				38F5B6D226160C65005250F3 /* LaunchesViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
