@@ -1,25 +1,22 @@
 //
-//  NewsViewController.swift
+//  LaunchesViewController.swift
 //  Spacefy
 //
-//  Created by Adolpho Piazza on 07/03/21.
+//  Created by Adolpho Piazza on 01/04/21.
 //
 
 import UIKit
 
-class NewsViewController: SFYBaseViewController {
+class LaunchesViewController: SFYBaseViewController {
 
-    static let newsVCTitle = "Latest News"
-    
+    static let launchesVCTitle = "Launches"
     private let tableView: UITableView = UITableView()
-    private var articles: [NewsModel]?
+    private var launches: [LaunchModel]?
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        title = NewsViewController.newsVCTitle
-        isLargeTitle = true
         
+        title = LaunchesViewController.launchesVCTitle
         setupTableView()
     }
     
@@ -31,21 +28,20 @@ class NewsViewController: SFYBaseViewController {
 }
 
 //MARK: - API Calls
-extension NewsViewController {
+extension LaunchesViewController {
     
     private func loadData() {
-        progressHUD.textLabel.text = "Fetching News"
+        progressHUD.textLabel.text = "Fetching Launches"
         progressHUD.show(in: view)
-        
-        NewsService.shared.fetchAll { (news, error) in
+        LaunchesService.shared.fetchAll { (launches, error) in
             self.progressHUD.dismiss()
             if let error = error {
-                self.showErrorAlertWith(message: error.localizedDescription)
+                self.showErrorAlertWith(message: error)
                 return
             }
             
             self.emptyView.isHidden = true
-            self.articles = news
+            self.launches = launches?.results
             self.tableView.reloadData()
         }
     }
@@ -53,15 +49,15 @@ extension NewsViewController {
 }
 
 //MARK: - Layouts
-extension NewsViewController {
+extension LaunchesViewController {
     
     private func setupTableView() {
         tableView.translatesAutoresizingMaskIntoConstraints = false
         view.addSubview(tableView)
         
-        tableView.register(NewsTableViewCell.self, forCellReuseIdentifier: NewsTableViewCell.reuseID)
         tableView.delegate = self
         tableView.dataSource = self
+        tableView.register(LaunchTableViewCell.self, forCellReuseIdentifier: LaunchTableViewCell.reuseID)
         tableView.tableFooterView = UIView()
         
         NSLayoutConstraint.activate([
@@ -75,23 +71,19 @@ extension NewsViewController {
 }
 
 //MARK: - TableView Delegates
-extension NewsViewController: UITableViewDelegate, UITableViewDataSource {
+extension LaunchesViewController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return articles?.count ?? 0
+        return launches?.count ?? 0
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard let cell = tableView.dequeueReusableCell(withIdentifier: NewsTableViewCell.reuseID, for: indexPath) as? NewsTableViewCell else {
-            return UITableViewCell()
-        }
-        cell.news = articles?[indexPath.row]
-        return cell
-    }
-    
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let visualizeVC = VisualizeNewsViewController(news: articles?[indexPath.row])
-        present(visualizeVC, animated: true, completion: nil)
+        let cell = tableView.dequeueReusableCell(withIdentifier: LaunchTableViewCell.reuseID, for: indexPath) as? LaunchTableViewCell
+        
+        cell?.launch = launches?[indexPath.row]
+        cell?.selectionStyle = .none
+        
+        return cell ?? UITableViewCell()
     }
     
 }

@@ -12,7 +12,14 @@ extension UIImage {
     struct SFYTabbar {
         
         static let news = UIImage(systemName: "newspaper")
+        static let launches = UIImage(systemName: "gyroscope")
         static let reports = UIImage(systemName: "note.text")
+        
+    }
+    
+    struct SFYBaseVC {
+        
+        static let error = UIImage(systemName: "xmark.circle")
         
     }
     

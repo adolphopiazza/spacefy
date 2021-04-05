@@ -9,8 +9,12 @@ import Foundation
 
 enum SFYNetworking {
     
-    static let baseURL = "https://spaceflightnewsapi.net/api/v2/"
-    static let articles = baseURL + "articles"
-    static let reports = baseURL + "reports"
+    static let SFNBaseURL = "https://spaceflightnewsapi.net/api/v2/"
+    static let articles = SFNBaseURL + "articles"
+    static let reports = SFNBaseURL + "reports"
+    
+    static let TSDBaseURL = "https://ll.thespacedevs.com/2.0.0/"
+    static let launches = TSDBaseURL + "launch"
+    static let upcomingLaunches = TSDBaseURL + "launch/upcoming"
     
 }
