@@ -17,4 +17,10 @@ extension UIImage {
         
     }
     
+    struct SFYBaseVC {
+        
+        static let error = UIImage(systemName: "xmark.circle")
+        
+    }
+    
 }

@@ -44,6 +44,7 @@ extension NewsViewController {
                 return
             }
             
+            self.emptyView.isHidden = true
             self.articles = news
             self.tableView.reloadData()
         }

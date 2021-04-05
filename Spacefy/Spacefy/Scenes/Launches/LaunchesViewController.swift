@@ -36,11 +36,11 @@ extension LaunchesViewController {
         LaunchesService.shared.fetchAll { (launches, error) in
             self.progressHUD.dismiss()
             if let error = error {
-                self.showErrorAlertWith(message: error.localizedDescription)
-                print(error)
+                self.showErrorAlertWith(message: error)
                 return
             }
             
+            self.emptyView.isHidden = true
             self.launches = launches?.results
             self.tableView.reloadData()
         }
@@ -57,6 +57,7 @@ extension LaunchesViewController {
         
         tableView.delegate = self
         tableView.dataSource = self
+        tableView.register(LaunchTableViewCell.self, forCellReuseIdentifier: LaunchTableViewCell.reuseID)
         tableView.tableFooterView = UIView()
         
         NSLayoutConstraint.activate([
@@ -77,11 +78,12 @@ extension LaunchesViewController: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = UITableViewCell(style: .default, reuseIdentifier: nil)
+        let cell = tableView.dequeueReusableCell(withIdentifier: LaunchTableViewCell.reuseID, for: indexPath) as? LaunchTableViewCell
         
-        cell.textLabel?.text = launches?[indexPath.row].name
+        cell?.launch = launches?[indexPath.row]
+        cell?.selectionStyle = .none
         
-        return cell
+        return cell ?? UITableViewCell()
     }
     
 }

@@ -14,6 +14,8 @@
 		382C8EAF25F57DD000C61FA0 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 382C8EAD25F57DD000C61FA0 /* LaunchScreen.storyboard */; };
 		387850FD2615FE82003AAA43 /* UIImage+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 387850FC2615FE82003AAA43 /* UIImage+Ext.swift */; };
 		388BC02B26054DB40073957D /* VisualizeNewsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 388BC02A26054DB40073957D /* VisualizeNewsViewController.swift */; };
+		389F5075261BA82600946F4C /* LaunchTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 389F5074261BA82600946F4C /* LaunchTableViewCell.swift */; };
+		389F5078261BAFB200946F4C /* DateFormats.swift in Sources */ = {isa = PBXBuildFile; fileRef = 389F5077261BAFB200946F4C /* DateFormats.swift */; };
 		38A672D025FFFC4800BEB3CD /* NewsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38A672CF25FFFC4800BEB3CD /* NewsTableViewCell.swift */; };
 		38A672D5260001C400BEB3CD /* String+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38A672D4260001C400BEB3CD /* String+Ext.swift */; };
 		38C0C89C25F5A8DA00C961FB /* NewsModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38C0C89B25F5A8DA00C961FB /* NewsModel.swift */; };
@@ -48,6 +50,8 @@
 		382C8EB025F57DD000C61FA0 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		387850FC2615FE82003AAA43 /* UIImage+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImage+Ext.swift"; sourceTree = "<group>"; };
 		388BC02A26054DB40073957D /* VisualizeNewsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VisualizeNewsViewController.swift; sourceTree = "<group>"; };
+		389F5074261BA82600946F4C /* LaunchTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LaunchTableViewCell.swift; sourceTree = "<group>"; };
+		389F5077261BAFB200946F4C /* DateFormats.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateFormats.swift; sourceTree = "<group>"; };
 		38A672CF25FFFC4800BEB3CD /* NewsTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsTableViewCell.swift; sourceTree = "<group>"; };
 		38A672D4260001C400BEB3CD /* String+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Ext.swift"; sourceTree = "<group>"; };
 		38C0C89B25F5A8DA00C961FB /* NewsModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsModel.swift; sourceTree = "<group>"; };
@@ -171,6 +175,7 @@
 			children = (
 				38A672CF25FFFC4800BEB3CD /* NewsTableViewCell.swift */,
 				38C5A69A261250E600D134FD /* ReportCollectionViewCell.swift */,
+				389F5074261BA82600946F4C /* LaunchTableViewCell.swift */,
 			);
 			path = Cells;
 			sourceTree = "<group>";
@@ -180,6 +185,7 @@
 			children = (
 				38A672D4260001C400BEB3CD /* String+Ext.swift */,
 				387850FC2615FE82003AAA43 /* UIImage+Ext.swift */,
+				389F5077261BAFB200946F4C /* DateFormats.swift */,
 			);
 			path = Utilis;
 			sourceTree = "<group>";
@@ -406,6 +412,7 @@
 				38CB596726121C18005B2D97 /* SFYBaseViewController.swift in Sources */,
 				38F5B6DF26161271005250F3 /* RocketModel.swift in Sources */,
 				382C8EA525F57DCF00C61FA0 /* SceneDelegate.swift in Sources */,
+				389F5075261BA82600946F4C /* LaunchTableViewCell.swift in Sources */,
 				38CB596B26121E78005B2D97 /* SFYButton.swift in Sources */,
 				38A672D5260001C400BEB3CD /* String+Ext.swift in Sources */,
 				38F5B6E82616141A005250F3 /* LaunchesModel.swift in Sources */,
@@ -415,6 +422,7 @@
 				387850FD2615FE82003AAA43 /* UIImage+Ext.swift in Sources */,
 				388BC02B26054DB40073957D /* VisualizeNewsViewController.swift in Sources */,
 				38C5A68D2612373200D134FD /* ReportModel.swift in Sources */,
+				389F5078261BAFB200946F4C /* DateFormats.swift in Sources */,
 				38F5B6D226160C65005250F3 /* LaunchesViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
