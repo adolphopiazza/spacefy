@@ -37,6 +37,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     
     func createLaunchesTabBar() -> UINavigationController {
         let launchesVC = UINavigationController(rootViewController: LaunchesViewController())
+        launchesVC.navigationBar.tintColor = .label
         launchesVC.tabBarItem = UITabBarItem(title: LaunchesViewController.launchesVCTitle, image: UIImage.SFYTabbar.launches, tag: 1)
         return launchesVC
     }

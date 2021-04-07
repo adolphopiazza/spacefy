@@ -12,6 +12,8 @@ struct PadModel: Codable {
     let id: Int
     let url: String
     let agencyId: Int?
+    let longitude: String
+    let latitude: String
     let name: String
     let infoUrl: String?
     let wikiUrl: String
