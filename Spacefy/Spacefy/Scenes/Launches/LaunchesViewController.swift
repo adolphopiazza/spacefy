@@ -86,4 +86,13 @@ extension LaunchesViewController: UITableViewDelegate, UITableViewDataSource {
         return cell ?? UITableViewCell()
     }
     
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let launchDetailVC = LaunchDetailViewController()
+
+        launchDetailVC.launch = launches?[indexPath.row]
+        launchDetailVC.hidesBottomBarWhenPushed = true
+        
+        navigationController?.pushViewController(launchDetailVC, animated: true)
+    }
+    
 }
