@@ -21,7 +21,7 @@ class ReportCollectionViewCell: UICollectionViewCell {
     var report: ReportModel? {
         didSet {
             reportTitle.configure(text: report?.title, font: .systemFont(ofSize: 25, weight: .semibold))
-            reportDate.configure(text: report?.publishedAt?.formatToBRLDate, color: .secondaryLabel, font: .systemFont(ofSize: 15))
+            reportDate.configure(text: report?.publishedAt?.formatToNewsDate, color: .secondaryLabel, font: .systemFont(ofSize: 15))
             reportSummary.configure(text: report?.summary, font: .systemFont(ofSize: 18))
             readOnWebsiteButton.setTitle("Continue reading on \(report?.newsSite ?? "Safari")", for: .normal)
         }
@@ -86,7 +86,6 @@ extension ReportCollectionViewCell {
     private func setupReportTitle() {
         containerView.addSubview(reportTitle)
         
-        reportTitle.numberOfLines = 0
         reportTitle.textAlignment = .center
         
         NSLayoutConstraint.activate([
@@ -107,7 +106,6 @@ extension ReportCollectionViewCell {
     
     private func setupReportSummary() {
         containerView.addSubview(reportSummary)
-        reportSummary.numberOfLines = 0
         
         NSLayoutConstraint.activate([
             reportSummary.topAnchor.constraint(equalTo: reportDate.bottomAnchor, constant: 25),

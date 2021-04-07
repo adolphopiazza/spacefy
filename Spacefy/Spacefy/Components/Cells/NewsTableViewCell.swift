@@ -44,7 +44,6 @@ extension NewsTableViewCell {
     private func setupNewsTitle() {
         addSubview(newsTitle)
         newsTitle.configure(text: news?.title, font: .systemFont(ofSize: 22, weight: .semibold))
-        newsTitle.numberOfLines = 0
         
         NSLayoutConstraint.activate([
             newsTitle.topAnchor.constraint(equalTo: topAnchor, constant: 15),
@@ -55,7 +54,7 @@ extension NewsTableViewCell {
     
     private func setupNewsPublishedAt() {
         addSubview(newsPublishedAt)
-        newsPublishedAt.configure(text: news?.publishedAt?.formatToBRLDate, color: .secondaryLabel, font: .systemFont(ofSize: 15))
+        newsPublishedAt.configure(text: news?.publishedAt?.formatToNewsDate, color: .secondaryLabel, font: .systemFont(ofSize: 15))
         
         NSLayoutConstraint.activate([
             newsPublishedAt.topAnchor.constraint(equalTo: newsTitle.bottomAnchor, constant: 20),

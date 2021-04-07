@@ -45,6 +45,7 @@ extension VisualizeNewsViewController {
                 return
             }
             
+            self.emptyView.isHidden = true
             self.setupLayouts()
             self.newsImageView.image = image
         }
@@ -95,7 +96,6 @@ extension VisualizeNewsViewController {
     private func setupSummaryLabel() {
         contentView.addSubview(summaryLabel)
         summaryLabel.configure(text: news?.summary, font: .systemFont(ofSize: 22, weight: .semibold))
-        summaryLabel.numberOfLines = 0
         
         NSLayoutConstraint.activate([
             summaryLabel.topAnchor.constraint(equalTo: newsImageView.bottomAnchor, constant: 20),
@@ -106,7 +106,7 @@ extension VisualizeNewsViewController {
     
     private func setupDateLabel() {
         contentView.addSubview(dateLabel)
-        dateLabel.configure(text: news?.publishedAt?.formatToBRLDate, color: .secondaryLabel, font: .systemFont(ofSize: 15))
+        dateLabel.configure(text: news?.publishedAt?.formatToNewsDate, color: .secondaryLabel, font: .systemFont(ofSize: 15))
         
         NSLayoutConstraint.activate([
             dateLabel.topAnchor.constraint(equalTo: summaryLabel.bottomAnchor, constant: 10),

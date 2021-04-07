@@ -24,7 +24,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         let tabBarVC = UITabBarController()
         
         tabBarVC.tabBar.tintColor = .label
-        tabBarVC.setViewControllers([createNewsTabBar(), createReportsTabBar()], animated: true)
+        tabBarVC.setViewControllers([createNewsTabBar(), createLaunchesTabBar(), createReportsTabBar()], animated: true)
         
         return tabBarVC
     }
@@ -35,9 +35,16 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         return newsNC
     }
     
+    func createLaunchesTabBar() -> UINavigationController {
+        let launchesVC = UINavigationController(rootViewController: LaunchesViewController())
+        launchesVC.navigationBar.tintColor = .label
+        launchesVC.tabBarItem = UITabBarItem(title: LaunchesViewController.launchesVCTitle, image: UIImage.SFYTabbar.launches, tag: 1)
+        return launchesVC
+    }
+    
     func createReportsTabBar() -> UINavigationController {
         let reportsVC = UINavigationController(rootViewController: ReportsViewController())
-        reportsVC.tabBarItem = UITabBarItem(title: ReportsViewController.reportsVCTitle, image: UIImage.SFYTabbar.reports, tag: 1)
+        reportsVC.tabBarItem = UITabBarItem(title: ReportsViewController.reportsVCTitle, image: UIImage.SFYTabbar.reports, tag: 2)
         return reportsVC
     }
 

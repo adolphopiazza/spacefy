@@ -12,6 +12,7 @@ class SFYLabel: UILabel {
     override init(frame: CGRect) {
         super.init(frame: .zero)
         translatesAutoresizingMaskIntoConstraints = false
+        numberOfLines = 0
     }
     
     required init?(coder: NSCoder) {

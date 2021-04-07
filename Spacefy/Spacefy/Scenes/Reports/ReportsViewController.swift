@@ -45,6 +45,7 @@ extension ReportsViewController {
                 return
             }
             
+            self.emptyView.isHidden = true
             self.reports = reports
             self.pageControl.numberOfPages = self.reports?.count ?? 0
             self.collectionView?.reloadData()
