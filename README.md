@@ -14,5 +14,3 @@ The app consumes [The Devs Space API](https://thespacedevs.com/snapi) to fetch a
 * [Bagel](https://github.com/yagiz/Bagel)
 
 All the views are made with view code, no storyboards used!
-
-As soon as more features are added, this readme will be updated.
