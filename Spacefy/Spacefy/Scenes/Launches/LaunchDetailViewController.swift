@@ -27,7 +27,7 @@ class LaunchDetailViewController: SFYScrollViewController {
                               pad: launch.pad.name)
             launchTitle.configure(text: launch.name, font: .systemFont(ofSize: 26, weight: .semibold))
             countdownLabel.configure(text: "ETA", font: .systemFont(ofSize: 22))
-            dateLabel.configure(text: launch.net.formatToLaunchesDate, color: .secondaryLabel, font: .systemFont(ofSize: 20))
+            dateLabel.configure(text: launch.net.formatTo(date: .launchesFormat), color: .secondaryLabel, font: .systemFont(ofSize: 20))
             descriptionLabel.configure(text: launch.mission?.description, font: .systemFont(ofSize: 20))
             
             timer = Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(updateTimer), userInfo: nil, repeats: true)
@@ -57,7 +57,7 @@ extension LaunchDetailViewController {
     
     @objc private func updateTimer() {
         let df = DateFormatter()
-        df.dateFormat = DateFormats.launchesFormat
+        df.dateFormat = DateFormats.launchesFormat.rawValue
         
         guard let date = df.date(from: launch?.net ?? "") else { return }
         let components = Calendar.current.dateComponents([.month, .day, .hour, .minute, .second], from: Date(), to: date)

@@ -19,7 +19,7 @@ class LaunchTableViewCell: UITableViewCell {
     var launch: LaunchModel? {
         didSet {
             titleLabel.configure(text: launch?.name, font: .systemFont(ofSize: 24, weight: .semibold))
-            netLabel.configure(text: launch?.net.formatToLaunchesDate, font: .systemFont(ofSize: 20))
+            netLabel.configure(text: launch?.net.formatTo(date: .launchesFormat), font: .systemFont(ofSize: 20))
             missionName.configure(text: launch?.mission?.name, color: .secondaryLabel, font: .systemFont(ofSize: 14))
             orbitName.configure(text: launch?.mission?.orbit?.name, color: .secondaryLabel, font: .systemFont(ofSize: 14))
             padName.configure(text: launch?.pad.name, color: .secondaryLabel, font: .systemFont(ofSize: 14))

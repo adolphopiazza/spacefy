@@ -9,7 +9,7 @@ import Foundation
 
 struct NewsModel: Codable {
     
-    let id: String
+    let id: Int
     let featured: Bool?
     let title: String?
     let url: String?
