@@ -9,7 +9,7 @@ import Foundation
 
 struct ReportModel: Codable {
     
-    let id: String
+    let id: Int
     let title: String?
     let url: String?
     let imageUrl: String?

@@ -54,7 +54,7 @@ extension NewsTableViewCell {
     
     private func setupNewsPublishedAt() {
         addSubview(newsPublishedAt)
-        newsPublishedAt.configure(text: news?.publishedAt?.formatToNewsDate, color: .secondaryLabel, font: .systemFont(ofSize: 15))
+        newsPublishedAt.configure(text: news?.publishedAt?.formatTo(date: .newsFormat), color: .secondaryLabel, font: .systemFont(ofSize: 15))
         
         NSLayoutConstraint.activate([
             newsPublishedAt.topAnchor.constraint(equalTo: newsTitle.bottomAnchor, constant: 20),

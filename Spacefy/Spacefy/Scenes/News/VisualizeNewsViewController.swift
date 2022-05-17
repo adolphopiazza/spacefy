@@ -106,7 +106,7 @@ extension VisualizeNewsViewController {
     
     private func setupDateLabel() {
         contentView.addSubview(dateLabel)
-        dateLabel.configure(text: news?.publishedAt?.formatToNewsDate, color: .secondaryLabel, font: .systemFont(ofSize: 15))
+        dateLabel.configure(text: news?.publishedAt?.formatTo(date: .newsFormat), color: .secondaryLabel, font: .systemFont(ofSize: 15))
         
         NSLayoutConstraint.activate([
             dateLabel.topAnchor.constraint(equalTo: summaryLabel.bottomAnchor, constant: 10),
