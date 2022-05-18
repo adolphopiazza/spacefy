@@ -9,14 +9,22 @@ import UIKit
 
 class LaunchesViewController: SFYBaseViewController {
 
-    static let launchesVCTitle = "Launches"
     private let tableView: UITableView = UITableView()
-    private var launches: [LaunchModel]?
+    private let viewModel: LaunchesViewModel
+    
+    init(viewModel: LaunchesViewModel) {
+        self.viewModel = viewModel
+        super.init(nibName: nil, bundle: nil)
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        title = LaunchesViewController.launchesVCTitle
+        title = viewModel.title
         setupTableView()
     }
     
@@ -31,18 +39,17 @@ class LaunchesViewController: SFYBaseViewController {
 extension LaunchesViewController {
     
     private func loadData() {
-        progressHUD.textLabel.text = "Fetching Launches"
+        progressHUD.textLabel.text = viewModel.progressHUDTitle
         progressHUD.show(in: view)
-        LaunchesService.shared.fetchAll { (launches, error) in
+        viewModel.loadData { error, _ in
             self.progressHUD.dismiss()
             if let error = error {
                 self.showErrorAlertWith(message: error)
                 return
             }
             
-            self.emptyView.isHidden = true
-            self.launches = launches?.results
             self.tableView.reloadData()
+            self.emptyView.isHidden = true
         }
     }
     
@@ -74,13 +81,13 @@ extension LaunchesViewController {
 extension LaunchesViewController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return launches?.count ?? 0
+        return viewModel.launches?.count ?? 0
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: LaunchTableViewCell.reuseID, for: indexPath) as? LaunchTableViewCell
         
-        cell?.launch = launches?[indexPath.row]
+        cell?.launch = viewModel.launches?[indexPath.row]
         cell?.selectionStyle = .none
         
         return cell ?? UITableViewCell()
@@ -89,7 +96,7 @@ extension LaunchesViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let launchDetailVC = LaunchDetailViewController()
 
-        launchDetailVC.launch = launches?[indexPath.row]
+        launchDetailVC.launch = viewModel.launches?[indexPath.row]
         launchDetailVC.hidesBottomBarWhenPushed = true
         
         navigationController?.pushViewController(launchDetailVC, animated: true)

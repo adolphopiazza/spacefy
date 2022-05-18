@@ -36,10 +36,14 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     }
     
     func createLaunchesTabBar() -> UINavigationController {
-        let launchesVC = UINavigationController(rootViewController: LaunchesViewController())
-        launchesVC.navigationBar.tintColor = .label
-        launchesVC.tabBarItem = UITabBarItem(title: LaunchesViewController.launchesVCTitle, image: UIImage.SFYTabbar.launches, tag: 1)
-        return launchesVC
+        let launchesViewModel = LaunchesViewModel()
+        let launchesVC = LaunchesViewController(viewModel: launchesViewModel)
+        let launchesNavController = UINavigationController(rootViewController: launchesVC)
+        
+        launchesNavController.navigationBar.tintColor = .label
+        launchesNavController.tabBarItem = UITabBarItem(title: launchesViewModel.title, image: UIImage.SFYTabbar.launches, tag: 1)
+        
+        return launchesNavController
     }
     
     func createReportsTabBar() -> UINavigationController {
