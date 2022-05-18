@@ -7,17 +7,9 @@
 
 import Foundation
 
-protocol LaunchesViewModelProtocol {
-    var launches: [LaunchModel]? { get set }
-    var title: String { get }
-    var progressHUDTitle: String { get }
+class LaunchesViewModel: BaseViewModelProtocol {
     
-    func loadData(completion: @escaping (String?, Bool?) -> Void)
-}
-
-class LaunchesViewModel: LaunchesViewModelProtocol {
-    
-    var launches: [LaunchModel]?
+    var model: [LaunchModel]?
     var title: String = "Launches"
     var progressHUDTitle: String = "Fetching Launches"
     
@@ -28,7 +20,7 @@ class LaunchesViewModel: LaunchesViewModelProtocol {
                 return
             }
             
-            self.launches = launches?.results
+            self.model = launches?.results
             completion(nil, true)
         }
     }

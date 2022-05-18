@@ -8,16 +8,23 @@
 import UIKit
 
 class NewsViewController: SFYBaseViewController {
-
-    static let newsVCTitle = "Latest News"
     
     private let tableView: UITableView = UITableView()
-    private var articles: [NewsModel]?
+    private let viewModel: NewsViewModel
+    
+    init(viewModel: NewsViewModel) {
+        self.viewModel = viewModel
+        super.init(nibName: nil, bundle: nil)
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        title = NewsViewController.newsVCTitle
+        title = viewModel.title
         isLargeTitle = true
         
         setupTableView()
@@ -34,18 +41,16 @@ class NewsViewController: SFYBaseViewController {
 extension NewsViewController {
     
     private func loadData() {
-        progressHUD.textLabel.text = "Fetching News"
+        progressHUD.textLabel.text = viewModel.progressHUDTitle
         progressHUD.show(in: view)
-        
-        NewsService.shared.fetchAll { (news, error) in
+        viewModel.loadData { error, _ in
             self.progressHUD.dismiss()
             if let error = error {
-                self.showErrorAlertWith(message: error.localizedDescription)
+                self.showErrorAlertWith(message: error)
                 return
             }
             
             self.emptyView.isHidden = true
-            self.articles = news
             self.tableView.reloadData()
         }
     }
@@ -78,19 +83,20 @@ extension NewsViewController {
 extension NewsViewController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return articles?.count ?? 0
+        return viewModel.model?.count ?? 0
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: NewsTableViewCell.reuseID, for: indexPath) as? NewsTableViewCell else {
             return UITableViewCell()
         }
-        cell.news = articles?[indexPath.row]
+        cell.news = viewModel.model?[indexPath.row]
         return cell
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let visualizeVC = VisualizeNewsViewController(news: articles?[indexPath.row])
+        let viewModel = VisualizeNewsViewModel(news: viewModel.model?[indexPath.row])
+        let visualizeVC = VisualizeNewsViewController(viewModel: viewModel)
         present(visualizeVC, animated: true, completion: nil)
     }
     

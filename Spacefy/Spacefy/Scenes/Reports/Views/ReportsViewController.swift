@@ -9,15 +9,23 @@ import UIKit
 
 class ReportsViewController: SFYBaseViewController {
 
-    static let reportsVCTitle = "Reports"
     private var collectionView: UICollectionView?
     private let pageControl: UIPageControl = UIPageControl()
-    private var reports: [ReportModel]?
+    private let viewModel: ReportsViewModel
+    
+    init(viewModel: ReportsViewModel) {
+        self.viewModel = viewModel
+        super.init(nibName: nil, bundle: nil)
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        title = ReportsViewController.reportsVCTitle
+        title = viewModel.title
         navigationController?.navigationBar.isHidden = true
         
         setupPageControl()
@@ -35,19 +43,18 @@ class ReportsViewController: SFYBaseViewController {
 extension ReportsViewController {
     
     private func loadData() {
-        progressHUD.textLabel.text = "Fetching Reports"
+        progressHUD.textLabel.text = viewModel.progressHUDTitle
         progressHUD.show(in: view)
         
-        ReportsService.shared.fetchAll { (reports, error) in
+        viewModel.loadData { error, _ in
             self.progressHUD.dismiss()
             if let error = error {
-                self.showErrorAlertWith(message: error.localizedDescription)
+                self.showErrorAlertWith(message: error)
                 return
             }
             
             self.emptyView.isHidden = true
-            self.reports = reports
-            self.pageControl.numberOfPages = self.reports?.count ?? 0
+            self.pageControl.numberOfPages = self.viewModel.model?.count ?? 0
             self.collectionView?.reloadData()
         }
     }
@@ -107,14 +114,14 @@ extension ReportsViewController {
 extension ReportsViewController: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return reports?.count ?? 0
+        return viewModel.model?.count ?? 0
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: ReportCollectionViewCell.identifier, for: indexPath)
                 as? ReportCollectionViewCell else { return UICollectionViewCell() }
         
-        cell.report = reports?[indexPath.row]
+        cell.report = viewModel.model?[indexPath.row]
         return cell
     }
     

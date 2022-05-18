@@ -30,9 +30,12 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     }
     
     func createNewsTabBar() -> UINavigationController {
-        let newsNC = UINavigationController(rootViewController: NewsViewController())
-        newsNC.tabBarItem = UITabBarItem(title: NewsViewController.newsVCTitle, image: UIImage.SFYTabbar.news, tag: 0)
-        return newsNC
+        let newsViewModel = NewsViewModel()
+        let newsVC = NewsViewController(viewModel: newsViewModel)
+        let newsNavController = UINavigationController(rootViewController: newsVC)
+        
+        newsNavController.tabBarItem = UITabBarItem(title: newsViewModel.title, image: UIImage.SFYTabbar.news, tag: 0)
+        return newsNavController
     }
     
     func createLaunchesTabBar() -> UINavigationController {
@@ -47,9 +50,11 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     }
     
     func createReportsTabBar() -> UINavigationController {
-        let reportsVC = UINavigationController(rootViewController: ReportsViewController())
-        reportsVC.tabBarItem = UITabBarItem(title: ReportsViewController.reportsVCTitle, image: UIImage.SFYTabbar.reports, tag: 2)
-        return reportsVC
+        let reportsViewModel = ReportsViewModel()
+        let reportsVC = ReportsViewController(viewModel: reportsViewModel)
+        let reportsNavController = UINavigationController(rootViewController: reportsVC)
+        reportsNavController.tabBarItem = UITabBarItem(title: reportsViewModel.title, image: UIImage.SFYTabbar.reports, tag: 2)
+        return reportsNavController
     }
 
     func sceneDidDisconnect(_ scene: UIScene) {

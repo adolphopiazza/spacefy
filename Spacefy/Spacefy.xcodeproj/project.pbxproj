@@ -39,6 +39,11 @@
 		38F5B6E52616135A005250F3 /* PadModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38F5B6E42616135A005250F3 /* PadModel.swift */; };
 		38F5B6E82616141A005250F3 /* LaunchesModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38F5B6E72616141A005250F3 /* LaunchesModel.swift */; };
 		4B21842828332B4C006F1B46 /* LaunchesViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B21842728332B4C006F1B46 /* LaunchesViewModel.swift */; };
+		4BEDB372283577CA006883DF /* NewsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BEDB371283577CA006883DF /* NewsViewModel.swift */; };
+		4BEDB37528357EC6006883DF /* BaseViewModelProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BEDB37428357EC6006883DF /* BaseViewModelProtocol.swift */; };
+		4BEDB37728359769006883DF /* VisualizeNewsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BEDB37628359769006883DF /* VisualizeNewsViewModel.swift */; };
+		4BEDB37928359B64006883DF /* LaunchDetailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BEDB37828359B64006883DF /* LaunchDetailViewModel.swift */; };
+		4BEDB37B28359F2A006883DF /* ReportsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BEDB37A28359F2A006883DF /* ReportsViewModel.swift */; };
 		EA6FCB7C6082CE03F67A687E /* Pods_Spacefy.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C9B085F82635AEDBF51CD47A /* Pods_Spacefy.framework */; };
 /* End PBXBuildFile section */
 
@@ -78,6 +83,11 @@
 		38F5B6E72616141A005250F3 /* LaunchesModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LaunchesModel.swift; sourceTree = "<group>"; };
 		451DEACBAFD27B828A34A608 /* Pods-Spacefy.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Spacefy.release.xcconfig"; path = "Target Support Files/Pods-Spacefy/Pods-Spacefy.release.xcconfig"; sourceTree = "<group>"; };
 		4B21842728332B4C006F1B46 /* LaunchesViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LaunchesViewModel.swift; sourceTree = "<group>"; };
+		4BEDB371283577CA006883DF /* NewsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsViewModel.swift; sourceTree = "<group>"; };
+		4BEDB37428357EC6006883DF /* BaseViewModelProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseViewModelProtocol.swift; sourceTree = "<group>"; };
+		4BEDB37628359769006883DF /* VisualizeNewsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VisualizeNewsViewModel.swift; sourceTree = "<group>"; };
+		4BEDB37828359B64006883DF /* LaunchDetailViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LaunchDetailViewModel.swift; sourceTree = "<group>"; };
+		4BEDB37A28359F2A006883DF /* ReportsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReportsViewModel.swift; sourceTree = "<group>"; };
 		787DE6E5313A97291017984D /* Pods-Spacefy.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Spacefy.debug.xcconfig"; path = "Target Support Files/Pods-Spacefy/Pods-Spacefy.debug.xcconfig"; sourceTree = "<group>"; };
 		C9B085F82635AEDBF51CD47A /* Pods_Spacefy.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Spacefy.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -172,6 +182,7 @@
 				38CB596926121E54005B2D97 /* Buttons */,
 				38CB5962261219FE005B2D97 /* ViewControllers */,
 				38CB595E2612152E005B2D97 /* Labels */,
+				4BEDB37328357E85006883DF /* BaseViewModelProtocol */,
 			);
 			path = Components;
 			sourceTree = "<group>";
@@ -334,6 +345,7 @@
 		4BEDB36828357602006883DF /* ViewModels */ = {
 			isa = PBXGroup;
 			children = (
+				4BEDB371283577CA006883DF /* NewsViewModel.swift */,
 			);
 			path = ViewModels;
 			sourceTree = "<group>";
@@ -357,6 +369,7 @@
 		4BEDB36C28357638006883DF /* ViewModels */ = {
 			isa = PBXGroup;
 			children = (
+				4BEDB37628359769006883DF /* VisualizeNewsViewModel.swift */,
 			);
 			path = ViewModels;
 			sourceTree = "<group>";
@@ -364,6 +377,7 @@
 		4BEDB36D283576C1006883DF /* ViewModels */ = {
 			isa = PBXGroup;
 			children = (
+				4BEDB37828359B64006883DF /* LaunchDetailViewModel.swift */,
 			);
 			path = ViewModels;
 			sourceTree = "<group>";
@@ -388,8 +402,17 @@
 		4BEDB370283576D3006883DF /* ViewModels */ = {
 			isa = PBXGroup;
 			children = (
+				4BEDB37A28359F2A006883DF /* ReportsViewModel.swift */,
 			);
 			path = ViewModels;
+			sourceTree = "<group>";
+		};
+		4BEDB37328357E85006883DF /* BaseViewModelProtocol */ = {
+			isa = PBXGroup;
+			children = (
+				4BEDB37428357EC6006883DF /* BaseViewModelProtocol.swift */,
+			);
+			path = BaseViewModelProtocol;
 			sourceTree = "<group>";
 		};
 		99DA05B5DE255AE5BCC61E44 /* Pods */ = {
@@ -517,21 +540,26 @@
 				38C5A6902612379600D134FD /* ReportsService.swift in Sources */,
 				38C0C8A625F5AC9100C961FB /* NewsService.swift in Sources */,
 				38CB5960261215A7005B2D97 /* SFYLabel.swift in Sources */,
+				4BEDB37B28359F2A006883DF /* ReportsViewModel.swift in Sources */,
 				38A672D025FFFC4800BEB3CD /* NewsTableViewCell.swift in Sources */,
 				38C33EBD261D0526009BFC9F /* LaunchDetailViewController.swift in Sources */,
 				38F5B6D6261610A0005250F3 /* LaunchesService.swift in Sources */,
 				38C5A6942612382300D134FD /* ReportsViewController.swift in Sources */,
 				38C5A69B261250E600D134FD /* ReportCollectionViewCell.swift in Sources */,
+				4BEDB37928359B64006883DF /* LaunchDetailViewModel.swift in Sources */,
 				38C0C89C25F5A8DA00C961FB /* NewsModel.swift in Sources */,
 				38F5B6E2261612ED005250F3 /* MissionModel.swift in Sources */,
+				4BEDB372283577CA006883DF /* NewsViewModel.swift in Sources */,
 				3807222C25F59D4000F32BEB /* NewsViewController.swift in Sources */,
 				38F5B6D926161171005250F3 /* LaunchModel.swift in Sources */,
 				382C8EA325F57DCF00C61FA0 /* AppDelegate.swift in Sources */,
 				38F5B6DC2616122B005250F3 /* LaunchProviderModel.swift in Sources */,
+				4BEDB37528357EC6006883DF /* BaseViewModelProtocol.swift in Sources */,
 				38CB596726121C18005B2D97 /* SFYBaseViewController.swift in Sources */,
 				38F5B6DF26161271005250F3 /* RocketModel.swift in Sources */,
 				382C8EA525F57DCF00C61FA0 /* SceneDelegate.swift in Sources */,
 				389F5075261BA82600946F4C /* LaunchTableViewCell.swift in Sources */,
+				4BEDB37728359769006883DF /* VisualizeNewsViewModel.swift in Sources */,
 				38CB596B26121E78005B2D97 /* SFYButton.swift in Sources */,
 				38A672D5260001C400BEB3CD /* String+Ext.swift in Sources */,
 				38F5B6E82616141A005250F3 /* LaunchesModel.swift in Sources */,

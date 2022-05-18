@@ -81,22 +81,22 @@ extension LaunchesViewController {
 extension LaunchesViewController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return viewModel.launches?.count ?? 0
+        return viewModel.model?.count ?? 0
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: LaunchTableViewCell.reuseID, for: indexPath) as? LaunchTableViewCell
         
-        cell?.launch = viewModel.launches?[indexPath.row]
+        cell?.launch = viewModel.model?[indexPath.row]
         cell?.selectionStyle = .none
         
         return cell ?? UITableViewCell()
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let launchDetailVC = LaunchDetailViewController()
+        let viewModel = LaunchDetailViewModel(launch: viewModel.model?[indexPath.row])
+        let launchDetailVC = LaunchDetailViewController(viewModel: viewModel)
 
-        launchDetailVC.launch = viewModel.launches?[indexPath.row]
         launchDetailVC.hidesBottomBarWhenPushed = true
         
         navigationController?.pushViewController(launchDetailVC, animated: true)
