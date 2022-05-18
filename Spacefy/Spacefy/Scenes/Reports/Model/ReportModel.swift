@@ -1,16 +1,15 @@
 //
-//  NewsModel.swift
+//  ReportModel.swift
 //  Spacefy
 //
-//  Created by Adolpho Piazza on 07/03/21.
+//  Created by Adolpho Piazza on 29/03/21.
 //
 
 import Foundation
 
-struct NewsModel: Codable {
+struct ReportModel: Codable {
     
-    let id: String
-    let featured: Bool?
+    let id: Int
     let title: String?
     let url: String?
     let imageUrl: String?

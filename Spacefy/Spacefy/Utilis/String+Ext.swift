@@ -9,18 +9,9 @@ import Foundation
 
 extension String {
     
-    var formatToNewsDate: String {
+    func formatTo(date format: DateFormats) -> String {
         let df = DateFormatter()
-        df.dateFormat = DateFormats.newsFormat
-        guard let date = df.date(from: self) else { return self }
-        df.dateFormat = "MMM d yyyy, h:mm a"
-        
-        return df.string(from: date)
-    }
-    
-    var formatToLaunchesDate: String {
-        let df = DateFormatter()
-        df.dateFormat = DateFormats.launchesFormat
+        df.dateFormat = format.rawValue
         guard let date = df.date(from: self) else { return self }
         df.dateFormat = "MMM d yyyy, h:mm a"
         

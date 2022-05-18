@@ -18,24 +18,20 @@ class LaunchDetailViewController: SFYScrollViewController {
     private let descriptionLabel: SFYLabel = SFYLabel()
     
     private var timer: Timer?
-    var launch: LaunchModel? {
-        didSet {
-            guard let launch = launch else { return }
-            
-            setPinAndLocation(to: CLLocationCoordinate2D(latitude: CLLocationDegrees(launch.pad.latitude) ?? CLLocationDegrees(),
-                                                         longitude: CLLocationDegrees(launch.pad.longitude) ?? CLLocationDegrees()),
-                              pad: launch.pad.name)
-            launchTitle.configure(text: launch.name, font: .systemFont(ofSize: 26, weight: .semibold))
-            countdownLabel.configure(text: "ETA", font: .systemFont(ofSize: 22))
-            dateLabel.configure(text: launch.net.formatToLaunchesDate, color: .secondaryLabel, font: .systemFont(ofSize: 20))
-            descriptionLabel.configure(text: launch.mission?.description, font: .systemFont(ofSize: 20))
-            
-            timer = Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(updateTimer), userInfo: nil, repeats: true)
-        }
+    private let viewModel: LaunchDetailViewModel
+    
+    init(viewModel: LaunchDetailViewModel) {
+        self.viewModel = viewModel
+        super.init(nibName: nil, bundle: nil)
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        timer = Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(updateTimer), userInfo: nil, repeats: true)
         
         setupMapView()
         setupLaunchTitle()
@@ -57,9 +53,9 @@ extension LaunchDetailViewController {
     
     @objc private func updateTimer() {
         let df = DateFormatter()
-        df.dateFormat = DateFormats.launchesFormat
+        df.dateFormat = DateFormats.launchesFormat.rawValue
         
-        guard let date = df.date(from: launch?.net ?? "") else { return }
+        guard let date = df.date(from: viewModel.launch?.net ?? "") else { return }
         let components = Calendar.current.dateComponents([.month, .day, .hour, .minute, .second], from: Date(), to: date)
         
         countdownLabel.configure(text: "\(components.day ?? 0) days - \(components.hour ?? 0):\(components.minute ?? 0):\(components.second ?? 0)",
@@ -85,8 +81,9 @@ extension LaunchDetailViewController {
     
     private func setPinAndLocation(to coordinates: CLLocationCoordinate2D, pad: String) {
         let launchPoint: MKPointAnnotation = MKPointAnnotation()
-        launchPoint.coordinate = coordinates
-        launchPoint.title = pad
+        launchPoint.coordinate = CLLocationCoordinate2D(latitude: CLLocationDegrees(viewModel.launch?.pad.latitude ?? "") ?? CLLocationDegrees(),
+                                                        longitude: CLLocationDegrees(viewModel.launch?.pad.longitude ?? "") ?? CLLocationDegrees())
+        launchPoint.title = viewModel.launch?.pad.name
         
         mapView.addAnnotation(launchPoint)
         mapView.setCenter(coordinates, animated: true)
@@ -95,6 +92,7 @@ extension LaunchDetailViewController {
     private func setupLaunchTitle() {
         contentView.addSubview(launchTitle)
         
+        launchTitle.configure(text: viewModel.launch?.name, font: .systemFont(ofSize: 26, weight: .semibold))
         launchTitle.textAlignment = .center
         
         NSLayoutConstraint.activate([
@@ -107,6 +105,7 @@ extension LaunchDetailViewController {
     private func setupCountdownLabel() {
         contentView.addSubview(countdownLabel)
         
+        countdownLabel.configure(text: viewModel.countdownLabel, font: .systemFont(ofSize: 22))
         countdownLabel.textAlignment = .center
         
         NSLayoutConstraint.activate([
@@ -118,6 +117,8 @@ extension LaunchDetailViewController {
     
     private func setupDateLabel() {
         contentView.addSubview(dateLabel)
+        
+        dateLabel.configure(text: viewModel.launch?.net.formatTo(date: .launchesFormat), color: .secondaryLabel, font: .systemFont(ofSize: 20))
         
         NSLayoutConstraint.activate([
             dateLabel.topAnchor.constraint(equalTo: countdownLabel.bottomAnchor, constant: 10),
@@ -141,6 +142,8 @@ extension LaunchDetailViewController {
     
     private func setupDescriptionLabel() {
         contentView.addSubview(descriptionLabel)
+        
+        descriptionLabel.configure(text: viewModel.launch?.mission?.description, font: .systemFont(ofSize: 20))
         
         NSLayoutConstraint.activate([
             descriptionLabel.topAnchor.constraint(equalTo: lineView.bottomAnchor, constant: 30),

@@ -9,16 +9,16 @@ import UIKit
 
 class VisualizeNewsViewController: SFYScrollViewController {
 
-    private var news: NewsModel?
     private let closeButton: SFYButton = SFYButton(title: "Close")
     private let newsImageView: UIImageView = UIImageView()
     private let summaryLabel: SFYLabel = SFYLabel()
     private let dateLabel: SFYLabel = SFYLabel()
     private let readOnWebsiteButton: SFYButton = SFYButton()
+    private let viewModel: VisualizeNewsViewModel
     
-    init(news: NewsModel?) {
+    init(viewModel: VisualizeNewsViewModel) {
+        self.viewModel = viewModel
         super.init(nibName: nil, bundle: nil)
-        self.news = news
     }
     
     required init?(coder: NSCoder) {
@@ -38,10 +38,11 @@ extension VisualizeNewsViewController {
     
     private func loadImage() {
         progressHUD.show(in: view)
-        NewsService.shared.fetchImage(url: news?.imageUrl ?? "") { (image, error) in
+        
+        viewModel.loadImage { image, error in
             self.progressHUD.dismiss()
             if let error = error {
-                self.showErrorAlertWith(message: error.localizedDescription)
+                self.showErrorAlertWith(message: error)
                 return
             }
             
@@ -95,7 +96,7 @@ extension VisualizeNewsViewController {
     
     private func setupSummaryLabel() {
         contentView.addSubview(summaryLabel)
-        summaryLabel.configure(text: news?.summary, font: .systemFont(ofSize: 22, weight: .semibold))
+        summaryLabel.configure(text: viewModel.news?.summary, font: .systemFont(ofSize: 22, weight: .semibold))
         
         NSLayoutConstraint.activate([
             summaryLabel.topAnchor.constraint(equalTo: newsImageView.bottomAnchor, constant: 20),
@@ -106,7 +107,7 @@ extension VisualizeNewsViewController {
     
     private func setupDateLabel() {
         contentView.addSubview(dateLabel)
-        dateLabel.configure(text: news?.publishedAt?.formatToNewsDate, color: .secondaryLabel, font: .systemFont(ofSize: 15))
+        dateLabel.configure(text: viewModel.news?.publishedAt?.formatTo(date: .newsFormat), color: .secondaryLabel, font: .systemFont(ofSize: 15))
         
         NSLayoutConstraint.activate([
             dateLabel.topAnchor.constraint(equalTo: summaryLabel.bottomAnchor, constant: 10),
@@ -117,10 +118,10 @@ extension VisualizeNewsViewController {
     private func setupReadOnWebsiteButton() {
         contentView.addSubview(readOnWebsiteButton)
         
-        readOnWebsiteButton.setTitle("Read this on \(news?.newsSite ?? "Safari")", for: .normal)
+        readOnWebsiteButton.setTitle(viewModel.getButtonTitle(), for: .normal)
         readOnWebsiteButton.configure(backgroundColor: .tertiarySystemFill)
         readOnWebsiteButton.onTap {
-            guard let newsURL = self.news?.url, let url = URL(string: newsURL) else { return }
+            guard let newsURL = self.viewModel.news?.url, let url = URL(string: newsURL) else { return }
             UIApplication.shared.open(url, options: [:], completionHandler: nil)
         }
         

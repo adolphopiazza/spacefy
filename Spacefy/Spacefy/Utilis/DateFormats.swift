@@ -7,9 +7,9 @@
 
 import Foundation
 
-enum DateFormats {
+enum DateFormats: String {
     
-    static let newsFormat = "yyyy-MM-dd'T'HH:mm:ss'.000'Z"
-    static let launchesFormat = "yyyy-MM-dd'T'HH:mm:ssZ"
+    case newsFormat = "yyyy-MM-dd'T'HH:mm:ss'.000'Z"
+    case launchesFormat = "yyyy-MM-dd'T'HH:mm:ssZ"
     
 }

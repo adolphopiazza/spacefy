@@ -30,22 +30,31 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     }
     
     func createNewsTabBar() -> UINavigationController {
-        let newsNC = UINavigationController(rootViewController: NewsViewController())
-        newsNC.tabBarItem = UITabBarItem(title: NewsViewController.newsVCTitle, image: UIImage.SFYTabbar.news, tag: 0)
-        return newsNC
+        let newsViewModel = NewsViewModel()
+        let newsVC = NewsViewController(viewModel: newsViewModel)
+        let newsNavController = UINavigationController(rootViewController: newsVC)
+        
+        newsNavController.tabBarItem = UITabBarItem(title: newsViewModel.title, image: UIImage.SFYTabbar.news, tag: 0)
+        return newsNavController
     }
     
     func createLaunchesTabBar() -> UINavigationController {
-        let launchesVC = UINavigationController(rootViewController: LaunchesViewController())
-        launchesVC.navigationBar.tintColor = .label
-        launchesVC.tabBarItem = UITabBarItem(title: LaunchesViewController.launchesVCTitle, image: UIImage.SFYTabbar.launches, tag: 1)
-        return launchesVC
+        let launchesViewModel = LaunchesViewModel()
+        let launchesVC = LaunchesViewController(viewModel: launchesViewModel)
+        let launchesNavController = UINavigationController(rootViewController: launchesVC)
+        
+        launchesNavController.navigationBar.tintColor = .label
+        launchesNavController.tabBarItem = UITabBarItem(title: launchesViewModel.title, image: UIImage.SFYTabbar.launches, tag: 1)
+        
+        return launchesNavController
     }
     
     func createReportsTabBar() -> UINavigationController {
-        let reportsVC = UINavigationController(rootViewController: ReportsViewController())
-        reportsVC.tabBarItem = UITabBarItem(title: ReportsViewController.reportsVCTitle, image: UIImage.SFYTabbar.reports, tag: 2)
-        return reportsVC
+        let reportsViewModel = ReportsViewModel()
+        let reportsVC = ReportsViewController(viewModel: reportsViewModel)
+        let reportsNavController = UINavigationController(rootViewController: reportsVC)
+        reportsNavController.tabBarItem = UITabBarItem(title: reportsViewModel.title, image: UIImage.SFYTabbar.reports, tag: 2)
+        return reportsNavController
     }
 
     func sceneDidDisconnect(_ scene: UIScene) {
